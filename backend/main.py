@@ -10,18 +10,19 @@ all_decks = [
     UserDeck(name="Neurological Structures",
         card_list_ds=[
             Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
-    UserDeck(name="Neurological Structures",
+    UserDeck(name="Pharmacology",
         card_list_ds=[
             Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
-    UserDeck(name="Neurological Structures",
+    UserDeck(name="Anatomy & Physio",
         card_list_ds=[
             Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
-    UserDeck(name="Neurological Structures",
+    UserDeck(name="Pathology",
         card_list_ds=[
             Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
-    UserDeck(name="Neurological Structures",
+    UserDeck(name=" Linear alg",
         card_list_ds=[
-            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
+            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1)
+
 
 ]
 

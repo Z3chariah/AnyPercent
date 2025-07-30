@@ -34,12 +34,12 @@ class CreateCard(FlashCard):
 
 class Deck(BaseModel):
     card_list_ds: list[Card] = Field(..., min_length=1, max_length=100, description="this is a deck of cards")
-    name: str = Field(..., min_length=10, description="This is the user generated title of a deck. All titles made by the programmer are example names which will be deleted and modified by the user")
+    name: str = Field(..., min_length=1, description="This is the user generated title of a deck. All titles made by the programmer are example names which will be deleted and modified by the user")
 
 
 class UpdateDeck(BaseModel):
     card_list_ds: Optional[list[Card]] = Field(..., min_length=1, max_length=100, description="this is a deck of cards")
-    name: Optional[str] = Field(..., min_length=10, description="This is the user generated title of a deck. All titles made by the programmer are example names which will be deleted and modified by the user")
+    name: Optional[str] = Field(..., min_length=1, description="This is the user generated title of a deck. All titles made by the programmer are example names which will be deleted and modified by the user")
 
 class CreateDeck(Deck):
     pass
