@@ -19,20 +19,14 @@ const App: Component = () => {
 
   return (
     <>
-      <For each={every_deck()}>
-        {(deck) => (
-          <Show when={every_deck()} fallback={<p>loading...</p>}>
-            <div class="c-container">
-              <div class="card">
-                <h1 class="text-2xl">{deck.name}</h1>
-                <div class="card-items">
-                  <p>lorum what not</p>
-                </div>
-              </div>
-            </div>
-          </Show>
-        )}
-      </For>
+      <div class="flex items-center h-screen w-screen justify-end">
+        <div class="flex justify-center items-center h-fit w-auto bg-slate-300 flex-nowrap overflow-scroll">
+          {" "}
+          <For each={every_deck()}>
+            {(deck) => <Card deckName={deck.name} />}
+          </For>
+        </div>
+      </div>
     </>
   );
 };
