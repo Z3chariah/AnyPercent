@@ -12,16 +12,16 @@ all_decks = [
             Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
     UserDeck(name="Pharmacology",
         card_list_ds=[
-            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
+            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=2),
     UserDeck(name="Anatomy & Physio",
         card_list_ds=[
-            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
+            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=3),
     UserDeck(name="Pathology",
         card_list_ds=[
-            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
+            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=4),
     UserDeck(name=" Linear alg",
         card_list_ds=[
-            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1)
+            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=5)
 
 
 ]
@@ -40,8 +40,18 @@ def instantiate_user_card(all_decks: list[UserDeck], deck_id: int, card_id: int)
                 HTTPException(status_code=404, detail=print(f'Failed to find {card}! Please try again later.'))
 
 
+origins = [
+    "http://localhost:3000"
 
+]
 
+api.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 
@@ -50,11 +60,11 @@ def get_decks():
  return all_decks
 
 
-@api.get('/decks/{deck_name}', response_model= UserDeck)
+@api.get('/decks/{deck_name}', response_model= List[Card], response_description="Allow's users to see a list of cards from a specific deck")
 def get_deck(deck_name: str = ""):
       for deck in all_decks:
           if deck.name == deck_name:
-              return deck
+              return deck.card_list_ds
 
 
 @api.delete('/decks/{deck_name}', response_model=UserDeck)
@@ -137,17 +147,3 @@ def update_deck(deck_name: str, updated_deck: UpdateDeck):
                     return deck
             except Exception:
                 HTTPException(status_code=404, detail=print(f'Failed to update card: {deck}'))
-
-
-
-origins = [
-    "http://localhost:3000"
-]
-
-api.add_middleware(
-    CORSMiddleware,
-    allow_origins = origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)

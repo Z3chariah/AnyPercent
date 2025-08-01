@@ -20,9 +20,9 @@ const App: Component = () => {
   return (
     <>
       <div class="flex flex-col items-end h-screen w-screen justify-center">
-        <div class="flex  items-center h-fit w-2/3 bg-slate-300 flex-nowrap overflow-scroll">
+        <div class="flex items-center h-fit w-2/3 bg-slate-300 flex-nowrap overflow-scroll">
           <For each={every_deck()}>
-            {(deck) => <Card deckName={deck.name} />}
+            {(deck) => <Card deck_name={deck.name} deck_id={deck.deck_id} />}
           </For>
         </div>
       </div>
