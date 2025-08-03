@@ -1,6 +1,5 @@
 import type { Component } from "solid-js";
-import { createResource, For, Show } from "solid-js";
-import Card from "./components/Card";
+import { createResource, For } from "solid-js";
 
 async function fetchDecks() {
   const url = "http://127.0.0.1:8000/decks";
@@ -19,11 +18,25 @@ const App: Component = () => {
 
   return (
     <>
-      <div class="flex flex-col items-end h-screen w-screen justify-center">
-        <div class="flex items-center h-fit w-2/3 bg-slate-300 flex-nowrap overflow-scroll">
-          <For each={every_deck()}>
-            {(deck) => <Card deck_name={deck.name} deck_id={deck.deck_id} />}
-          </For>
+      <div class="flex flex-col items-center h-screen w-screen justify-center">
+        <div class="flex items-center justify-between h-fit w-3/4 bg-slate-700 rounded-full flex-col">
+          <div class="flex items-center justify-between h-32 w-full bg-slate-500 rounded-full px-6 mb-3">
+            <div>
+              <h2 class="ml-28">Card Box</h2>
+            </div>
+
+            <div>
+              <img
+                onClick={() => {
+                  {
+                    console.log("You've Clicked Me!");
+                  }
+                }}
+                class="w-12"
+                src="./src/assets/FolderIcon.svg"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
@@ -31,3 +44,8 @@ const App: Component = () => {
 };
 
 export default App;
+{
+  /*<For each={every_deck()}>
+  {(deck) => <Deck deck_name={deck.name} deck_id={deck.deck_id} />}
+</For>*/
+}

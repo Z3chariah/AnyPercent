@@ -19,7 +19,7 @@ all_decks = [
     UserDeck(name="Pathology",
         card_list_ds=[
             Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=4),
-    UserDeck(name=" Linear alg",
+    UserDeck(name="Linear Alg",
         card_list_ds=[
             Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=5)
 
@@ -61,7 +61,7 @@ def get_decks():
 
 
 @api.get('/decks/{deck_name}', response_model= List[Card], response_description="Allow's users to see a list of cards from a specific deck")
-def get_deck(deck_name: str = ""):
+def get_cardlist(deck_name: str = ""):
       for deck in all_decks:
           if deck.name == deck_name:
               return deck.card_list_ds
