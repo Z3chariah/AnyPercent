@@ -74,12 +74,12 @@ def delete_deck(deck_name: str):
             deleted_deck = all_decks.remove(deck)
             return deleted_deck
 
-@api.post('/decks/{deck_id}', response_model= Card)
-def create_card(deck_id: int, card: CreateCard):
+@api.post('/decks/{deck_name}', response_model= Card)
+def create_card(deck_name: str, card: CreateCard):
 
     for deck in all_decks:
 
-        if deck.deck_id == deck_id:
+        if deck.name == deck_name:
             new_unique_identifier = max(card.unique_identifier for card in deck.card_list_ds) + 1
             new_card = Card (
                 card_frontside = card.card_frontside,
