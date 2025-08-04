@@ -9,19 +9,30 @@ api = FastAPI()
 all_decks = [
     UserDeck(name="Neurological Structures",
         card_list_ds=[
-            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=1),
+            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 2, priority = Priority.Low),
+            Card(card_frontside= "Hippocampus", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 3, priority = Priority.Low),
+            Card(card_frontside= "Hypothalamus", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 4, priority = Priority.Low)
+
+
+        ], deck_id=1),
     UserDeck(name="Pharmacology",
         card_list_ds=[
-            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=2),
+        Card(card_frontside= "Galen", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low),
+        Card(card_frontside= "Ben Frank", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 2, priority = Priority.Low),
+        Card(card_frontside= "Pharmacopia", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 3, priority = Priority.Low),
+        Card(card_frontside= "Papyrus taber", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 4, priority = Priority.Low)
+], deck_id=2),
     UserDeck(name="Anatomy & Physio",
         card_list_ds=[
             Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=3),
     UserDeck(name="Pathology",
         card_list_ds=[
             Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=4),
+
     UserDeck(name="Linear Alg",
         card_list_ds=[
-            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=5)
+            Card(card_frontside= "Prefrontal Cortex", card_backside = "The area responsible for Decision-Making and Critical-Thinking", unique_identifier = 1, priority = Priority.Low)], deck_id=5),
+
 
 
 ]
@@ -61,7 +72,7 @@ def get_decks():
 
 
 @api.get('/decks/{deck_name}', response_model= List[Card], response_description="Allow's users to see a list of cards from a specific deck")
-def get_cardlist(deck_name: str = ""):
+def get_cardlist(deck_name: str ):
       for deck in all_decks:
           if deck.name == deck_name:
               return deck.card_list_ds

@@ -1,6 +1,5 @@
 import type { Component } from "solid-js";
 import { createResource, createSignal, For, Show } from "solid-js";
-import Card from "./components/Card";
 
 async function fetchDecks() {
   const url = "http://127.0.0.1:8000/decks";
@@ -14,33 +13,84 @@ async function fetchDecks() {
   return alldecks;
 }
 
+async function fetchCardList(deck_name: string) {
+  const url = `http://127.0.0.1:8000/decks/${deck_name}`;
+  const res = await fetch(url, {
+    method: "GET",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to get deck");
+  }
+
+  const cardList = await res.json();
+  return cardList;
+}
+
 const App: Component = () => {
-  var state = 0;
-  const [deck, setDeck] = createSignal("English");
-  const [toggle, setToggle] = createSignal(false);
+  var state: boolean = false;
+  var deck_name: string = "";
+  var count = 0;
+  const [deck, setDeck] = createSignal(deck_name);
+  const [toggle, setToggle] = createSignal(state);
   const [every_deck] = createResource(fetchDecks);
+  const [cardList] = createResource(deck, fetchCardList);
+  const [cardId, setCardId] = createSignal(count);
 
   return (
     <>
       <div class="flex items-center h-screen w-screen justify-evenly">
-        <div class="flex items-center justify-between h-fit w-3/4 bg-slate-700 rounded-full flex-col">
-          <div class="flex items-center justify-between h-32 w-full bg-slate-500 rounded-full px-6 mb-3">
-            <div>
-              <h2 class="ml-28">{deck()}</h2>
+        <div class="flex items-center justify-around h-75 w-3/4 bg-slate-700 rounded-full py-4">
+          <div class="flex flex-col items-center justify-center h-3/4 w-3/4 bg-slate-500 rounded-4xl mb-3">
+            <div class="flex items-center justify-between h-3/4 w-full rounded-full m-0">
+              <div>
+                <button
+                  class="ml-12"
+                  onClick={() => {
+                    setCardId(cardId() - 1);
+                  }}
+                >
+                  Right
+                </button>
+              </div>
+              <div>
+                {
+                  <For each={cardList()}>
+                    {(card) => (
+                      <Show when={cardId() === card.unique_identifier}>
+                        <h2>{card.card_frontside}</h2>
+                      </Show>
+                    )}
+                  </For>
+                }
+              </div>
+              <div>
+                <button
+                  class="mr-12"
+                  onClick={() => {
+                    setCardId(cardId() + 1);
+                  }}
+                >
+                  Left!
+                </button>
+              </div>
             </div>
 
             <div>
-              <img
-                onClick={() => {
-                  setToggle(() => true);
-                }}
-                onDblClick={() => {
-                  setToggle(() => false);
-                }}
-                class="w-12"
-                src="./src/assets/FolderIcon.svg"
-              />
+              <h2>{deck()}</h2>
             </div>
+          </div>
+          <div class="mr-8 ml-3">
+            <img
+              onClick={() => {
+                setToggle(() => true);
+              }}
+              onDblClick={() => {
+                setToggle(() => false);
+              }}
+              class="w-12"
+              src="./src/assets/FolderIcon.svg"
+            />
           </div>
         </div>
 
@@ -61,7 +111,10 @@ const App: Component = () => {
                           <h2>{deck.name}</h2>
                           <img
                             onClick={() => {
-                              setDeck(deck.name);
+                              setDeck(() => (deck_name = deck.name));
+                              deck_name == deck.name
+                                ? setCardId(0)
+                                : console.log();
                             }}
                             class="w-12"
                             src="./src/assets/FolderIcon.svg"
@@ -81,8 +134,3 @@ const App: Component = () => {
 };
 
 export default App;
-{
-  /*<For each={every_deck()}>
-  {(deck) => <Deck deck_name={deck.name} deck_id={deck.deck_id} />}
-</For>*/
-}
