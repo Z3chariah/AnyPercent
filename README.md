@@ -7,9 +7,9 @@ My goal in creating this tool is to create a minimalistic and light-weight alter
 
 You may clone the localhost and all dependencies via:
 
-'''bash
+```bash
 $ npm i && example docker
-'''
+```
 
 
 
