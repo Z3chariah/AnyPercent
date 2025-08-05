@@ -1,34 +1,20 @@
-## Usage
+## This is a sttudy tool that leverages Active Recall principles.
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+A pixel art styled website inspired by my love for world-building as well as my need to study very dense procedural content quickly.
+A primary use case is to create flashcards, parcipate in focus sessions, experience a more gamified way of studying
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+My goal in creating this tool is to create a minimalistic and light-weight alternative to other productivity focused tools.
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+You may clone the localhost and all dependencies via:
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+'''bash
+$ npm i && example docker
+'''
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm run dev` or `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
+## Note
 
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+All of the above docs are for organization and maintainence purposes: this website isn't deployed/production ready at this time!

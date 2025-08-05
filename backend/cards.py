@@ -45,4 +45,4 @@ class CreateDeck(Deck):
     pass
 
 class UserDeck(Deck):
-     deck_id: int = Field(description="this is the unique identifier for a card.")
+     deck_id: int = Field(description="this is the unique identifier for a deck.")

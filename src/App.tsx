@@ -71,7 +71,7 @@ const App: Component = () => {
                     setCardId(cardId() + 1);
                   }}
                 >
-                  Left!
+                  Left
                 </button>
               </div>
             </div>
